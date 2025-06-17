@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -6,111 +5,102 @@
 }
 
 body {
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: #333;
-  transition: background 1s ease;
-  overflow-x: hidden;
+  background: linear-gradient(to bottom, #ffeaa7, #fab1a0);
+  font-family: 'Poppins', sans-serif;
+  color: #2d3436;
+  min-height: 100vh;
 }
 
 header {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: white;
   padding: 20px;
   text-align: center;
-  border-bottom: 5px solid #f8b400;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 0 0 20px 20px;
 }
 
 header h1 {
-  font-size: 2.5em;
-  color: #ff6f61;
+  font-size: 2.8em;
+  color: #0984e3;
+}
+
+nav {
+  margin-top: 10px;
 }
 
 nav a {
-  margin: 0 15px;
-  color: #333;
+  margin: 0 10px;
+  color: #6c5ce7;
   text-decoration: none;
   font-weight: bold;
 }
 
 nav a:hover {
-  color: #ff6f61;
+  color: #d63031;
 }
 
 main {
+  max-width: 800px;
+  background-color: white;
+  margin: 30px auto;
   padding: 30px;
-  max-width: 900px;
-  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #d63031;
 }
 
 textarea {
   width: 100%;
-  height: 100px;
-  padding: 10px;
   border-radius: 10px;
-  border: 2px solid #f8b400;
-  margin-bottom: 10px;
-}
-
-input[type="file"] {
-  margin-bottom: 10px;
+  border: 2px solid #0984e3;
+  padding: 15px;
+  font-size: 1em;
+  resize: none;
 }
 
 button {
-  background-color: #ff6f61;
+  background-color: #00b894;
   color: white;
-  padding: 10px 20px;
   border: none;
+  padding: 10px 25px;
   border-radius: 25px;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: #f4483d;
-}
-
-.comentario-section {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-.comentario {
-  background-color: #fff7e6;
-  padding: 15px;
-  border-radius: 15px;
-  margin-bottom: 15px;
-  border: 1px solid #f8b400;
-}
-
-.comentario img {
-  max-width: 100px;
-  display: block;
   margin-top: 10px;
 }
 
-.resposta {
-  margin-left: 30px;
-  background-color: #fef5f5;
-  padding: 10px;
+button:hover {
+  background-color: #019875;
+}
+
+.comentarios {
+  margin-top: 30px;
+}
+
+.comentario {
+  background-color: #fefefe;
+  border-left: 5px solid #0984e3;
+  padding: 15px;
   border-radius: 10px;
-  border: 1px dashed #ff6f61;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 footer {
-  background-color: rgba(255, 255, 255, 0.9);
   text-align: center;
   padding: 15px;
-  margin-top: 30px;
-  border-top: 5px solid #f8b400;
+  background-color: white;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+  border-radius: 20px 20px 0 0;
+  margin-top: 40px;
 }
 
-/* 🐾 Animação de patinhas descendo */
-@keyframes patinhas {
-  0% {transform: translateY(-100px);}
-  100% {transform: translateY(100vh);}
+footer p {
+  color: #636e72;
 }
 
 .patinha {
@@ -122,8 +112,7 @@ footer {
   opacity: 0.5;
 }
 
-.patinha:nth-child(1) {left: 10%; animation-duration: 12s;}
-.patinha:nth-child(2) {left: 30%; animation-duration: 8s;}
-.patinha:nth-child(3) {left: 50%; animation-duration: 10s;}
-.patinha:nth-child(4) {left: 70%; animation-duration: 14s;}
-.patinha:nth-child(5) {left: 90%; animation-duration: 9s;}
+@keyframes patinhas {
+  0% {transform: translateY(-100px);}
+  100% {transform: translateY(100vh);}
+}
