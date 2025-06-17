@@ -1,78 +1,129 @@
-body {
-  background-color: #b6fcb6;
-  font-family: 'Courier New', Courier, monospace;
-  color: #fff200;
-  text-align: center;
+/* Reset básico */
+* {
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1 {
-  font-size: 3em;
-  text-shadow: 2px 2px #000;
+body {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #333;
+  transition: background 1s ease;
+  overflow-x: hidden;
 }
 
-.comentario-container {
-  background-color: #5fb760;
-  border: 8px solid #fff200;
-  border-radius: 16px;
+header {
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
-  max-width: 600px;
+  text-align: center;
+  border-bottom: 5px solid #f8b400;
+}
+
+header h1 {
+  font-size: 2.5em;
+  color: #ff6f61;
+}
+
+nav a {
+  margin: 0 15px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ff6f61;
+}
+
+main {
+  padding: 30px;
+  max-width: 900px;
   margin: 0 auto;
-  box-shadow: 4px 4px #000;
-}
-
-.pets {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.pets img {
-  width: 80px;
-  image-rendering: pixelated;
 }
 
 textarea {
   width: 100%;
   height: 100px;
-  border: 4px solid #fff200;
-  border-radius: 8px;
-  background-color: #eaffea;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 1em;
-  color: #333;
   padding: 10px;
-  resize: none;
+  border-radius: 10px;
+  border: 2px solid #f8b400;
+  margin-bottom: 10px;
+}
+
+input[type="file"] {
+  margin-bottom: 10px;
 }
 
 button {
-  margin-top: 10px;
+  background-color: #ff6f61;
+  color: white;
   padding: 10px 20px;
-  background-color: #fff200;
-  color: #333;
   border: none;
-  border-radius: 8px;
+  border-radius: 25px;
   cursor: pointer;
-  font-weight: bold;
-  box-shadow: 2px 2px #000;
 }
 
 button:hover {
-  background-color: #ffe600;
+  background-color: #f4483d;
 }
 
-#comentarios {
-  margin-top: 20px;
-  text-align: left;
+.comentario-section {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 .comentario {
-  background-color: #fff;
-  border: 4px solid #fff200;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
-  color: #000;
-  box-shadow: 2px 2px #000;
+  background-color: #fff7e6;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #f8b400;
 }
+
+.comentario img {
+  max-width: 100px;
+  display: block;
+  margin-top: 10px;
+}
+
+.resposta {
+  margin-left: 30px;
+  background-color: #fef5f5;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px dashed #ff6f61;
+}
+
+footer {
+  background-color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+  border-top: 5px solid #f8b400;
+}
+
+/* 🐾 Animação de patinhas descendo */
+@keyframes patinhas {
+  0% {transform: translateY(-100px);}
+  100% {transform: translateY(100vh);}
+}
+
+.patinha {
+  position: fixed;
+  top: -50px;
+  font-size: 20px;
+  animation: patinhas linear infinite;
+  color: #f8b400;
+  opacity: 0.5;
+}
+
+.patinha:nth-child(1) {left: 10%; animation-duration: 12s;}
+.patinha:nth-child(2) {left: 30%; animation-duration: 8s;}
+.patinha:nth-child(3) {left: 50%; animation-duration: 10s;}
+.patinha:nth-child(4) {left: 70%; animation-duration: 14s;}
+.patinha:nth-child(5) {left: 90%; animation-duration: 9s;}
