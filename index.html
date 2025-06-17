@@ -3,24 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fórum dos Pets 🐶🐱</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Fórum dos Pets 🐾</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>🐾 Fórum dos Pets 🐾</h1>
+  <header>
+    <h1>🐾 Fórum dos Pets 🐾</h1>
+    <nav>
+      <a href="blog.html">Blog</a>
+      <a href="achados.html">Achados e Perdidos</a>
+      <a href="mapa.html">Mapa dos Pets</a>
+      <a href="admin.html">Painel Admin</a>
+    </nav>
+  </header>
 
-  <div class="comentario-container">
-    <div class="pets">
-      <img src="public/imagens/cachorro.png" alt="Cachorro fofo">
-      <img src="public/imagens/gato.png" alt="Gato fofo">
-    </div>
+  <main>
+    <section class="comentario-section">
+      <div class="pets-header">
+        <img src="public/imagens/cachorro.png" alt="Cachorro">
+        <img src="public/imagens/gato.png" alt="Gato">
+      </div>
 
-    <textarea id="comentario" placeholder="Deixe aqui sua ideia, sugestão ou comentário sobre seu pet..."></textarea>
-    <button onclick="adicionarComentario()">Enviar</button>
+      <textarea id="comentario" placeholder="Compartilhe sua ideia, dúvida ou história do seu pet..."></textarea>
+      <input type="file" id="imagemComentario" accept="image/*">
+      <button onclick="adicionarComentario()">Enviar</button>
 
-    <div id="comentarios"></div>
-  </div>
+      <div id="comentarios"></div>
+    </section>
+  </main>
 
-  <script src="script.js"></script>
+  <footer>
+    <p>🐶🐱 Feito com amor para nossos pets</p>
+  </footer>
+
+  <audio id="somInteracao" src="public/audio/miau.mp3"></audio>
+
+  <script src="js/app.js"></script>
+  <script src="js/ia.js"></script>
 </body>
 </html>
