@@ -1,43 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fórum dos Pets 🐾</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fórum Pet Lovers</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>🐾 Fórum dos Pets 🐾</h1>
+
+<header>
+    <h1>🐾 Fórum Pet Lovers</h1>
     <nav>
-      <a href="blog.html">Blog</a>
-      <a href="achados.html">Achados e Perdidos</a>
-      <a href="mapa.html">Mapa dos Pets</a>
-      <a href="admin.html">Painel Admin</a>
+        <a href="#">Início</a>
+        <a href="#">Achados e Perdidos</a>
+        <a href="#">Dicas</a>
+        <a href="#">Adoção</a>
+        <a href="#">Admin</a>
     </nav>
-  </header>
+</header>
 
-  <main>
-    <section class="comentario-section">
-      <div class="pets-header">
-        <img src="public/imagens/cachorro.png" alt="Cachorro">
-        <img src="public/imagens/gato.png" alt="Gato">
-      </div>
+<main>
+    <h2>🐶 Poste aqui suas ideias, dúvidas ou relatos sobre seu pet!</h2>
 
-      <textarea id="comentario" placeholder="Compartilhe sua ideia, dúvida ou história do seu pet..."></textarea>
-      <input type="file" id="imagemComentario" accept="image/*">
-      <button onclick="adicionarComentario()">Enviar</button>
+    <div class="card">
+        <textarea id="comentario" rows="4" placeholder="Compartilhe algo sobre seu pet, ou deixe uma sugestão..."></textarea>
+        <button onclick="postarComentario()">Postar</button>
+    </div>
 
-      <div id="comentarios"></div>
-    </section>
-  </main>
+    <section id="comentarios"></section>
+</main>
 
-  <footer>
-    <p>🐶🐱 Feito com amor para nossos pets</p>
-  </footer>
+<footer>
+    <p>❤️ Construído para quem ama pets!</p>
+</footer>
 
-  <audio id="somInteracao" src="public/audio/miau.mp3"></audio>
-
-  <script src="js/app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
