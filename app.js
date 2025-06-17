@@ -1,111 +1,97 @@
-// 🌞🌙 Alternância de fundo dia/noite
-const hora = new Date().getHours();
-if (hora >= 6 && hora < 18) {
-  document.body.style.backgroundImage = "url('public/imagens/fundo-dia.png')";
-} else {
-  document.body.style.backgroundImage = "url('public/imagens/fundo-noite.png')";
-}
-
-// 🔊 Som de interação
-function tocarSom() {
-  const som = document.getElementById('somInteracao');
-  if (som) som.play();
-}
-
-// 🐾 Animação de patinhas
-for (let i = 0; i < 5; i++) {
-  const patinha = document.createElement('div');
-  patinha.classList.add('patinha');
-  patinha.innerHTML = '🐾';
-  document.body.appendChild(patinha);
-}
-
-// 🚀 Banco de dados local (substituir pelo Firebase depois)
+// Array pra armazenar os comentários
 let comentarios = JSON.parse(localStorage.getItem('comentarios')) || [];
 
-// 📝 Adiciona comentário
-function adicionarComentario() {
-  const texto = document.getElementById('comentario').value.trim();
-  const imagem = document.getElementById('imagemComentario').files[0];
-  if (texto === '') return alert('Digite um comentário.');
+function postarComentario() {
+    const campo = document.getElementById('comentario');
+    const texto = campo.value.trim();
+    if (texto === '') return;
 
-  let imagemURL = '';
-  if (imagem) {
-    imagemURL = URL.createObjectURL(imagem);
-  }
+    const novoComentario = {
+        id: Date.now(),
+        texto,
+        respostas: [],
+        curtidas: 0,
+        concluido: false
+    };
 
-  const novoComentario = {
-    id: Date.now(),
-    texto,
-    imagem: imagemURL,
-    respostas: [],
-    curtidas: 0,
-    concluido: false
-  };
-
-  comentarios.push(novoComentario);
-  salvarComentarios();
-  renderizarComentarios();
-  document.getElementById('comentario').value = '';
-  document.getElementById('imagemComentario').value = '';
-  tocarSom();
+    comentarios.push(novoComentario);
+    salvar();
+    renderizarComentarios();
+    campo.value = '';
 }
 
-// 💾 Salva no localStorage (substituir por Firebase depois)
-function salvarComentarios() {
-  localStorage.setItem('comentarios', JSON.stringify(comentarios));
+function responderComentario(id) {
+    const resposta = prompt('Digite sua resposta:');
+    if (resposta) {
+        const comentario = comentarios.find(c => c.id === id);
+        comentario.respostas.push(resposta);
+        salvar();
+        renderizarComentarios();
+    }
 }
 
-// 🖥️ Renderiza os comentários
+function curtirComentario(id) {
+    const comentario = comentarios.find(c => c.id === id);
+    comentario.curtidas += 1;
+    salvar();
+    renderizarComentarios();
+}
+
+function marcarConcluido(id) {
+    if (confirm('Tem certeza que deseja marcar como concluído?')) {
+        comentarios = comentarios.filter(c => c.id !== id);
+        salvar();
+        renderizarComentarios();
+    }
+}
+
+function salvar() {
+    localStorage.setItem('comentarios', JSON.stringify(comentarios));
+}
+
 function renderizarComentarios() {
-  const div = document.getElementById('comentarios');
-  if (!div) return;
-  div.innerHTML = '';
+    const secao = document.getElementById('comentarios');
+    secao.innerHTML = '';
 
-  comentarios.filter(c => !c.concluido).forEach(c => {
-    const comentario = document.createElement('div');
-    comentario.className = 'comentario';
+    comentarios.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'comentario';
 
-    comentario.innerHTML = `
-      <p>${c.texto}</p>
-      ${c.imagem ? `<img src="${c.imagem}">` : ''}
-      <p>👍 ${c.curtidas} <button onclick="curtir(${c.id})">Curtir</button></p>
-      <button onclick="responder(${c.id})">Responder</button>
-      <button onclick="concluir(${c.id})">Marcar como Concluído</button>
-      <div>${c.respostas.map(r => `<div class="resposta">${r}</div>`).join('')}</div>
-    `;
+        div.innerHTML = `
+            <p>${c.texto}</p>
+            <p>❤️ ${c.curtidas} curtidas</p>
+            <button onclick="curtirComentario(${c.id})">Curtir</button>
+            <button onclick="responderComentario(${c.id})">Responder</button>
+            <button onclick="marcarConcluido(${c.id})">Concluir (Admin)</button>
+        `;
 
-    div.appendChild(comentario);
-  });
+        // Respostas
+        if (c.respostas.length > 0) {
+            const resp = document.createElement('div');
+            resp.style.marginTop = '10px';
+            c.respostas.forEach(r => {
+                const p = document.createElement('p');
+                p.style.marginLeft = '15px';
+                p.style.color = '#00cec9';
+                p.innerText = `↪️ ${r}`;
+                resp.appendChild(p);
+            });
+            div.appendChild(resp);
+        }
+
+        secao.appendChild(div);
+    });
 }
 
-// 💌 Responder comentário
-function responder(id) {
-  const resposta = prompt('Digite sua resposta:');
-  if (!resposta) return;
-  const c = comentarios.find(c => c.id === id);
-  c.respostas.push(resposta);
-  salvarComentarios();
-  renderizarComentarios();
-  tocarSom();
-}
+// 🐾 Patinhas descendo (animação divertida)
+setInterval(() => {
+    const patinha = document.createElement('div');
+    patinha.className = 'patinhas';
+    patinha.style.setProperty('--random', Math.random());
+    patinha.innerText = Math.random() > 0.5 ? '🐾' : '🐶';
+    document.body.appendChild(patinha);
+    setTimeout(() => patinha.remove(), 8000);
+}, 5000);
 
-// ✅ Marcar como concluído
-function concluir(id) {
-  const c = comentarios.find(c => c.id === id);
-  c.concluido = true;
-  salvarComentarios();
-  renderizarComentarios();
-}
-
-// ❤️ Curtir
-function curtir(id) {
-  const c = comentarios.find(c => c.id === id);
-  c.curtidas++;
-  salvarComentarios();
-  renderizarComentarios();
-  tocarSom();
-}
-
-// ▶️ Inicializa
+// Carregar comentários no início
 renderizarComentarios();
